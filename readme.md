@@ -1,1 +1,0 @@
-Repo for hosting Laura's pastry portfolio website.

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laura Benatti — Pastry Portfolio</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FFFCF8; --bg-alt: #FFF5EE; --accent: #D4956B;
+  --sage: #8FA88A; --text: #33302C; --muted: #8A857E;
+}
+body { background: var(--bg); color: var(--text); font-family: Georgia,'Times New Roman',serif; font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+/* Lang */
+[data-lang]{display:none}[data-lang].show{display:block}
+span[data-lang].show,a[data-lang].show{display:inline}
+li[data-lang]{display:none}li[data-lang].show{display:list-item}
+
+.lang-toggle { position:fixed;top:20px;right:20px;z-index:100;display:flex;gap:6px }
+.lang-toggle button { font-family:system-ui,sans-serif;font-size:12px;font-weight:600;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--accent);background:var(--bg);color:var(--text);cursor:pointer;transition:all .25s;text-transform:uppercase }
+.lang-toggle button.active { background:var(--accent);color:#fff }
+.lang-toggle button:hover { opacity:.8 }
+
+/* Layout */
+section { padding: 72px 24px }
+.alt-bg { background: var(--bg-alt) }
+.container { max-width: 720px; margin: 0 auto }
+
+/* Hero */
+.hero { text-align:center;padding-top:110px;padding-bottom:56px }
+.hero .headshot { width:140px;height:140px;border-radius:50%;object-fit:cover;border:2.5px solid var(--sage);margin-bottom:24px }
+.hero h1 { font-size:2.6rem;font-weight:400;letter-spacing:.02em;margin-bottom:8px }
+.hero .subtitle { font-size:1.05rem;color:var(--muted);margin-bottom:24px;font-style:italic }
+.hero .intro { font-size:1.05rem;color:var(--text);max-width:540px;margin:0 auto;line-height:1.75 }
+
+/* Floral divider */
+.floral-divider { display:flex;justify-content:center;align-items:center;gap:12px;padding:8px 0 }
+.floral-divider svg { opacity:.4 }
+
+/* About */
+.about p { font-size:1.02rem;line-height:1.8;color:var(--text) }
+
+/* Section title */
+.section-title { font-size:1.5rem;font-weight:400;text-align:center;margin-bottom:32px;letter-spacing:.01em }
+
+/* Portfolio carousel */
+.portfolio-section { padding-bottom:48px;position:relative }
+.carousel-wrap { position:relative }
+.scroll-track { display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:0 max(24px, calc((100vw - 440px)/2)) 20px;scrollbar-width:none }
+.scroll-track::-webkit-scrollbar { display:none }
+.scroll-card { flex:0 0 420px;scroll-snap-align:center;border-radius:12px;overflow:hidden;position:relative;aspect-ratio:3/4;background:#eee }
+.scroll-card img { width:100%;height:100%;object-fit:cover;display:block }
+.scroll-card .caption { position:absolute;bottom:0;left:0;right:0;padding:48px 18px 18px;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff;font-size:.95rem;font-style:italic }
+
+/* Carousel arrows */
+.carousel-btn { position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,252,248,.88);backdrop-filter:blur(4px);color:var(--text);font-size:20px;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center }
+.carousel-btn:hover { background:var(--accent);color:#fff }
+.carousel-btn.prev { left:12px }
+.carousel-btn.next { right:12px }
+
+.dot-indicators { display:flex;justify-content:center;gap:8px;padding:16px 0 0 }
+.dot-indicators span { width:7px;height:7px;border-radius:50%;background:var(--accent);opacity:.25;transition:opacity .3s }
+.dot-indicators span.active { opacity:1 }
+
+@media(max-width:520px){
+  .scroll-card{flex:0 0 85vw}
+  .carousel-btn{display:none}
+}
+
+/* Experience — richer */
+.timeline { max-width:580px;margin:0 auto }
+.timeline-item { display:flex;gap:20px;margin-bottom:32px;align-items:flex-start }
+.timeline-year { font-family:system-ui,sans-serif;font-size:.85rem;font-weight:600;color:var(--accent);min-width:90px;text-align:right;padding-top:3px }
+.timeline-body h3 { font-size:1.05rem;font-weight:600;margin-bottom:3px }
+.timeline-body p { font-size:.9rem;color:var(--muted);margin-bottom:2px }
+.timeline-body ul { margin:6px 0 0 18px;font-size:.88rem;color:var(--muted);line-height:1.6 }
+.timeline-body ul li { margin-bottom:2px }
+.badge { display:inline-block;font-family:system-ui,sans-serif;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;background:var(--bg-alt);color:var(--accent);border:1px solid var(--accent);border-radius:20px;padding:2px 10px;margin-top:4px }
+
+/* Languages */
+.languages { max-width:580px;margin:32px auto 0;display:flex;gap:24px;justify-content:center;flex-wrap:wrap }
+.lang-item { text-align:center }
+.lang-item .name { font-size:.92rem;font-weight:600;color:var(--text) }
+.lang-item .level { font-family:system-ui,sans-serif;font-size:.78rem;color:var(--muted) }
+
+/* Contact */
+.contact { text-align:center }
+.contact-details { font-family:system-ui,sans-serif;font-size:.95rem;color:var(--muted);margin-top:16px;line-height:2 }
+.contact-details a { color:var(--accent);text-decoration:none }
+.contact-details a:hover { text-decoration:underline }
+.contact-note { margin-top:16px;font-style:italic;color:var(--muted);font-size:.95rem }
+
+footer { font-family:system-ui,sans-serif;text-align:center;padding:32px 24px;font-size:.82rem;color:var(--muted) }
+
+.fade-in { opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease }
+.fade-in.visible { opacity:1;transform:translateY(0) }
+</style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+  <button id="btn-hu" onclick="setLang('hu')">HU</button>
+  <button id="btn-it" onclick="setLang('it')">IT</button>
+</div>
+
+<section class="hero">
+  <img class="headshot" src="img/headshot.jpg" alt="Laura Benatti">
+  <h1>Laura Benatti</h1>
+  <div class="subtitle" data-lang="en">Pastry · Budapest</div>
+  <div class="subtitle" data-lang="hu">Cukrászat · Budapest</div>
+  <div class="subtitle" data-lang="it">Pasticceria · Budapest</div>
+  <p class="intro" data-lang="en">From Cento, Italy. Grew up in Hungary, spent a year in Denmark. Trained at CIE, interned at Chez Dodo. Looking for a pastry kitchen in Budapest.</p>
+  <p class="intro" data-lang="hu">Centóból, Olaszország. Magyarországon nőttem fel, egy évet Dániában töltöttem. A CIE-nél tanultam, a Chez Dodo-ban gyakornokoskodtam. Cukrászkonyhát keresek Budapesten.</p>
+  <p class="intro" data-lang="it">Da Cento, Italia. Cresciuta in Ungheria, un anno in Danimarca. Formata al CIE, stage al Chez Dodo. Cerco una cucina a Budapest.</p>
+</section>
+
+<div class="floral-divider">
+  <svg width="16" height="22" viewBox="0 0 16 22" fill="none"><ellipse cx="8" cy="6" rx="5" ry="6" fill="#D4956B"/><ellipse cx="5" cy="9" rx="4" ry="5" fill="#8FA88A" opacity=".5"/><line x1="8" y1="12" x2="8" y2="22" stroke="#8FA88A" stroke-width="1.2"/></svg>
+  <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><ellipse cx="5" cy="4" rx="3.5" ry="4.5" fill="#D4956B" opacity=".7"/><line x1="5" y1="9" x2="5" y2="18" stroke="#8FA88A" stroke-width="1"/></svg>
+  <svg width="16" height="22" viewBox="0 0 16 22" fill="none"><ellipse cx="8" cy="6" rx="5" ry="6" fill="#D4956B"/><ellipse cx="11" cy="9" rx="4" ry="5" fill="#8FA88A" opacity=".5"/><line x1="8" y1="12" x2="8" y2="22" stroke="#8FA88A" stroke-width="1.2"/></svg>
+</div>
+
+<section class="alt-bg">
+  <div class="container about fade-in">
+    <h2 class="section-title" data-lang="en">About</h2>
+    <h2 class="section-title" data-lang="hu">Rólam</h2>
+    <h2 class="section-title" data-lang="it">Chi sono</h2>
+    <p data-lang="en">I grew up in Cento, a small town in Emilia-Romagna, and moved to Hungary as a kid. I studied marketing and international relations, then spent about five years in corporate — Grundfos, Hydro, Videoton, and currently Emerson. It was a good career but not what I wanted to keep doing. In 2024 I started a one-year pastry diploma at the Culinary Institute of Europe. This past summer I did my internship at Chez Dodo in Budapest — they hold a La Liste Pastry Discovery Gem distinction, one of about five worldwide. I make tarts, choux, macarons, bonbons, and ice cream. I'm looking for a small team where I can keep learning.</p>
+    <p data-lang="hu">Centóban nőttem fel, egy kis városban Emilia-Romagna tartományban, aztán gyerekként Magyarországra költöztünk. Marketinget és nemzetközi kapcsolatokat tanultam, utána körülbelül öt évig multinacionális cégeknél dolgoztam — Grundfos, Hydro, Videoton, jelenleg Emerson. Jó karrier volt, de nem azt akartam csinálni egész életemben. 2024-ben elkezdtem egy egyéves cukrász képzést a Culinary Institute of Europe-nál. Idén nyáron a Chez Dodo-ban gyakornokoskodtam Budapesten — La Liste Pastry Discovery Gem díjasok, a világ körülbelül öt ilyen helyének egyike. Tartákat, choux-t, macaronokat, bonbonokat és fagylaltot készítek. Kis csapatot keresek, ahol tovább tanulhatok.</p>
+    <p data-lang="it">Sono cresciuta a Cento, un paesino in Emilia-Romagna, poi da bambina ci siamo trasferiti in Ungheria. Ho studiato marketing e relazioni internazionali, poi ho lavorato circa cinque anni in aziende multinazionali — Grundfos, Hydro, Videoton, e attualmente Emerson. Una buona carriera, ma non quello che volevo continuare a fare. Nel 2024 ho iniziato un diploma annuale di pasticceria al Culinary Institute of Europe. Quest'estate ho fatto lo stage al Chez Dodo a Budapest — hanno il riconoscimento La Liste Pastry Discovery Gem, uno di circa cinque al mondo. Faccio crostate, choux, macaron, bonbon e gelato. Cerco un piccolo team dove continuare a imparare.</p>
+  </div>
+</section>
+
+<div class="floral-divider">
+  <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><ellipse cx="5" cy="4" rx="3.5" ry="4.5" fill="#D4956B" opacity=".6"/><line x1="5" y1="9" x2="5" y2="18" stroke="#8FA88A" stroke-width="1"/></svg>
+  <svg width="16" height="22" viewBox="0 0 16 22" fill="none"><ellipse cx="8" cy="6" rx="5" ry="6" fill="#D4956B" opacity=".8"/><ellipse cx="10" cy="8" rx="3" ry="4" fill="#8FA88A" opacity=".4"/><line x1="8" y1="12" x2="8" y2="22" stroke="#8FA88A" stroke-width="1.2"/></svg>
+  <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><ellipse cx="5" cy="4" rx="3.5" ry="4.5" fill="#D4956B" opacity=".6"/><line x1="5" y1="9" x2="5" y2="18" stroke="#8FA88A" stroke-width="1"/></svg>
+</div>
+
+<section class="portfolio-section">
+  <h2 class="section-title fade-in" data-lang="en">Portfolio</h2>
+  <h2 class="section-title fade-in" data-lang="hu">Portfólió</h2>
+  <h2 class="section-title fade-in" data-lang="it">Portfolio</h2>
+
+  <div class="carousel-wrap">
+    <button class="carousel-btn prev" onclick="scrollCarousel(-1)" aria-label="Previous">&#8249;</button>
+    <button class="carousel-btn next" onclick="scrollCarousel(1)" aria-label="Next">&#8250;</button>
+
+    <div class="scroll-track" id="scrollTrack">
+      <div class="scroll-card"><img src="img/web_choux_craquelin.jpg" alt="Choux craquelin"><div class="caption"><span data-lang="en">Choux craquelin — caramelised mascarpone filling</span><span data-lang="hu">Choux craquelin — karamellizált mascarpone töltelék</span><span data-lang="it">Choux craquelin — ripieno di mascarpone caramellato</span></div></div>
+      <div class="scroll-card"><img src="img/web_creme_tarte.jpg" alt="Crème tarte"><div class="caption"><span data-lang="en">Crème pâtissière tart — seasonal stone fruit</span><span data-lang="hu">Krémes tarte — szezonális gyümölcs</span><span data-lang="it">Crostata alla crema — frutta di stagione</span></div></div>
+      <div class="scroll-card"><img src="img/web_cherry_cheesecake.jpg" alt="Cherry cheesecake"><div class="caption"><span data-lang="en">Cherry cheesecake — sour cherry compote</span><span data-lang="hu">Meggyes sajttorta — meggykompót</span><span data-lang="it">Cheesecake — composta di amarene</span></div></div>
+      <div class="scroll-card"><img src="img/web_caramel_bonbons.jpg" alt="Caramel bonbons"><div class="caption"><span data-lang="en">Caramel bonbons — hand-dipped, salted</span><span data-lang="hu">Karamell bonbonok — kézzel mártott, sós</span><span data-lang="it">Bonbon al caramello — tuffati a mano, salati</span></div></div>
+      <div class="scroll-card"><img src="img/web_plum_galette.jpg" alt="Plum galette"><div class="caption"><span data-lang="en">Plum galette — freeform, buttery crust</span><span data-lang="hu">Szilvás galette — vajas, rusztikus tészta</span><span data-lang="it">Galette alle prugne — pasta burrosa, rustica</span></div></div>
+      <div class="scroll-card"><img src="img/web_raspberry_madeleines.jpg" alt="Raspberry madeleines"><div class="caption"><span data-lang="en">Raspberry madeleines — freeze-dried raspberry</span><span data-lang="hu">Málnás madeleine — liofilizált málna</span><span data-lang="it">Madeleines al lampone — lamponi liofilizzati</span></div></div>
+      <div class="scroll-card"><img src="img/web_sugar_flowers.jpg" alt="Sugar flowers"><div class="caption"><span data-lang="en">Sugar flowers — hand-shaped petals</span><span data-lang="hu">Cukorvirágok — kézzel formázott szirmok</span><span data-lang="it">Fiori di zucchero — petali modellati a mano</span></div></div>
+      <div class="scroll-card"><img src="img/web_linzer.jpg" alt="Linzer"><div class="caption"><span data-lang="en">Linzer cookies — classic lattice, redcurrant jam</span><span data-lang="hu">Linzer — klasszikus rácsos, ribizlidzsem</span><span data-lang="it">Biscotti Linzer — marmellata di ribes</span></div></div>
+      <div class="scroll-card"><img src="img/web_caneles.jpg" alt="Canelés"><div class="caption"><span data-lang="en">Canelés — copper-mould, rum-vanilla custard</span><span data-lang="hu">Canelék — réz formában sütve, rum-vanília</span><span data-lang="it">Canelé — stampo in rame, crema rum-vaniglia</span></div></div>
+      <div class="scroll-card"><img src="img/web_banana_bread.jpg" alt="Banana bread"><div class="caption"><span data-lang="en">Banana bread — ripe banana, walnuts</span><span data-lang="hu">Banánkenyér — érett banán, dió</span><span data-lang="it">Banana bread — banana matura, noci</span></div></div>
+      <div class="scroll-card"><img src="img/web_torta_della_nonna.jpg" alt="Torta della nonna"><div class="caption"><span data-lang="en">Torta della nonna — pine nuts, lemon cream</span><span data-lang="hu">Torta della nonna — piniadió, citromkrém</span><span data-lang="it">Torta della nonna — pinoli, crema al limone</span></div></div>
+      <div class="scroll-card"><img src="img/web_fastelavnsboller.jpg" alt="Fastelavnsboller"><div class="caption"><span data-lang="en">Fastelavnsboller — Danish, chocolate-glazed</span><span data-lang="hu">Fastelavnsboller — dán, csokimázas</span><span data-lang="it">Fastelavnsboller — danesi, glassati al cioccolato</span></div></div>
+    </div>
+  </div>
+
+  <div class="dot-indicators" id="dotIndicators"></div>
+</section>
+
+<div class="floral-divider">
+  <svg width="16" height="22" viewBox="0 0 16 22" fill="none"><ellipse cx="8" cy="6" rx="5" ry="6" fill="#D4956B"/><ellipse cx="5" cy="9" rx="4" ry="5" fill="#8FA88A" opacity=".5"/><line x1="8" y1="12" x2="8" y2="22" stroke="#8FA88A" stroke-width="1.2"/></svg>
+  <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><ellipse cx="5" cy="4" rx="3.5" ry="4.5" fill="#D4956B" opacity=".7"/><line x1="5" y1="9" x2="5" y2="18" stroke="#8FA88A" stroke-width="1"/></svg>
+  <svg width="16" height="22" viewBox="0 0 16 22" fill="none"><ellipse cx="8" cy="6" rx="5" ry="6" fill="#D4956B"/><ellipse cx="11" cy="9" rx="4" ry="5" fill="#8FA88A" opacity=".5"/><line x1="8" y1="12" x2="8" y2="22" stroke="#8FA88A" stroke-width="1.2"/></svg>
+</div>
+
+<section class="alt-bg">
+  <div class="container fade-in">
+    <h2 class="section-title" data-lang="en">Experience</h2>
+    <h2 class="section-title" data-lang="hu">Tapasztalat</h2>
+    <h2 class="section-title" data-lang="it">Esperienza</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2025</div>
+        <div class="timeline-body">
+          <h3>Chez Dodo — <span data-lang="en">Pastry Intern</span><span data-lang="hu">Cukrász gyakornok</span><span data-lang="it">Stagista pasticcera</span></h3>
+          <span class="badge">La Liste Pastry Discovery Gem</span>
+          <ul>
+            <li data-lang="en">Daily production: choux, tarts, macarons, artisan ice cream</li>
+            <li data-lang="en">Workshop kitchen and front-of-house show kitchen</li>
+            <li data-lang="en">Opening/closing procedures, full prep line</li>
+            <li data-lang="hu">Napi termelés: choux, tarták, macaronok, fagylalt</li>
+            <li data-lang="hu">Üzemi és látványkonyhás munkavégzés</li>
+            <li data-lang="hu">Nyitás/zárás, teljes előkészítő sor</li>
+            <li data-lang="it">Produzione quotidiana: choux, crostate, macaron, gelato artigianale</li>
+            <li data-lang="it">Laboratorio e cucina a vista</li>
+            <li data-lang="it">Apertura/chiusura, linea di preparazione completa</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2024–25</div>
+        <div class="timeline-body">
+          <h3 data-lang="en">CIE — Pastry Arts Diploma</h3>
+          <h3 data-lang="hu">CIE — Cukrász Művészetek</h3>
+          <h3 data-lang="it">CIE — Diploma Arti Pasticcere</h3>
+          <p data-lang="en">Culinary Institute of Europe — one-year professional pastry training. French technique foundations, sugar work, chocolate, bread, ice cream.</p>
+          <p data-lang="hu">Culinary Institute of Europe — egyéves szakmai cukrász képzés. Francia technika alapok, cukormunka, csokoládé, kenyér, fagylalt.</p>
+          <p data-lang="it">Culinary Institute of Europe — formazione professionale annuale. Tecniche francesi, lavoro dello zucchero, cioccolato, pane, gelato.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2024–</div>
+        <div class="timeline-body">
+          <h3>Emerson — <span data-lang="en">Intl. Enterprise Order Handler</span><span data-lang="hu">Nemzetközi rendeléskezelő</span><span data-lang="it">Order Handler Internazionale</span></h3>
+          <p data-lang="en">Managing Italian &amp; English-speaking enterprise clients across Italy and the Middle East. Part-time alongside pastry studies.</p>
+          <p data-lang="hu">Olasz és angol nyelvű vállalati ügyfelek kezelése, Olaszország és Közel-Kelet. Részmunkaidőben a cukrász tanulmányok mellett.</p>
+          <p data-lang="it">Gestione clienti enterprise italiani e anglofoni in Italia e Medio Oriente. Part-time durante gli studi di pasticceria.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2019–24</div>
+        <div class="timeline-body">
+          <h3>Videoton, Hydro, Grundfos, Szárcsa Hotel</h3>
+          <p data-lang="en">Marketing &amp; BD (Videoton, 2024), supply chain intern (Hydro, 2023), HR comms &amp; quality (Grundfos, 2020–22), hotel reception (Szárcsa, 2019–20). Four multinationals, three languages, five years of working across borders.</p>
+          <p data-lang="hu">Marketing és üzletfejlesztés (Videoton, 2024), ellátási lánc gyakornok (Hydro, 2023), HR kommunikáció és minőségbiztosítás (Grundfos, 2020–22), recepció (Szárcsa Hotel, 2019–20). Négy multinacionális, három nyelv, öt év határokon átívelő munka.</p>
+          <p data-lang="it">Marketing e BD (Videoton, 2024), stage supply chain (Hydro, 2023), comunicazioni HR e qualità (Grundfos, 2020–22), reception hotel (Szárcsa, 2019–20). Quattro multinazionali, tre lingue, cinque anni di lavoro internazionale.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2016–24</div>
+        <div class="timeline-body">
+          <h3 data-lang="en">Education</h3>
+          <h3 data-lang="hu">Tanulmányok</h3>
+          <h3 data-lang="it">Formazione</h3>
+          <p data-lang="en">MSc Marketing, BSc International Relations (Metropolitan University, Budapest). AFS exchange year in Denmark (Herning Gymnasium, 2016–17).</p>
+          <p data-lang="hu">MSc Marketing, BSc Nemzetközi kapcsolatok (Metropolitan Egyetem, Budapest). AFS cserediák év Dániában (Herning Gymnasium, 2016–17).</p>
+          <p data-lang="it">MSc Marketing, BSc Relazioni Internazionali (Metropolitan University, Budapest). Anno di scambio AFS in Danimarca (Herning Gymnasium, 2016–17).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="languages">
+      <div class="lang-item"><div class="name" data-lang="en">Italian</div><div class="name" data-lang="hu">Olasz</div><div class="name" data-lang="it">Italiano</div><div class="level" data-lang="en">Native</div><div class="level" data-lang="hu">anyanyelvi</div><div class="level" data-lang="it">Madrelingua</div></div>
+      <div class="lang-item"><div class="name" data-lang="en">Hungarian</div><div class="name" data-lang="hu">Magyar</div><div class="name" data-lang="it">Ungherese</div><div class="level" data-lang="en">Native</div><div class="level" data-lang="hu">anyanyelvi</div><div class="level" data-lang="it">Madrelingua</div></div>
+      <div class="lang-item"><div class="name" data-lang="en">English</div><div class="name" data-lang="hu">Angol</div><div class="name" data-lang="it">Inglese</div><div class="level">C1</div></div>
+      <div class="lang-item"><div class="name" data-lang="en">Danish</div><div class="name" data-lang="hu">Dán</div><div class="name" data-lang="it">Danese</div><div class="level">B1</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="floral-divider">
+  <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><ellipse cx="5" cy="4" rx="3.5" ry="4.5" fill="#D4956B" opacity=".6"/><line x1="5" y1="9" x2="5" y2="18" stroke="#8FA88A" stroke-width="1"/></svg>
+  <svg width="16" height="22" viewBox="0 0 16 22" fill="none"><ellipse cx="8" cy="6" rx="5" ry="6" fill="#D4956B" opacity=".8"/><ellipse cx="10" cy="8" rx="3" ry="4" fill="#8FA88A" opacity=".4"/><line x1="8" y1="12" x2="8" y2="22" stroke="#8FA88A" stroke-width="1.2"/></svg>
+  <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><ellipse cx="5" cy="4" rx="3.5" ry="4.5" fill="#D4956B" opacity=".6"/><line x1="5" y1="9" x2="5" y2="18" stroke="#8FA88A" stroke-width="1"/></svg>
+</div>
+
+<section>
+  <div class="container contact fade-in">
+    <h2 class="section-title" data-lang="en">Contact</h2>
+    <h2 class="section-title" data-lang="hu">Kapcsolat</h2>
+    <h2 class="section-title" data-lang="it">Contatti</h2>
+    <div class="contact-details">
+      <a href="mailto:laura.benatti.ip@gmail.com">laura.benatti.ip@gmail.com</a><br>
+      +36 20 559 4753<br>
+      Budapest
+    </div>
+    <p class="contact-note" data-lang="en">Available for pastry positions, stages, and collaborations.</p>
+    <p class="contact-note" data-lang="hu">Cukrász pozíciókra, gyakorlatokra és együttműködésekre nyitott.</p>
+    <p class="contact-note" data-lang="it">Disponibile per posizioni in pasticceria, stage e collaborazioni.</p>
+  </div>
+</section>
+
+<footer>&copy; 2025 Laura Benatti</footer>
+
+<script>
+function setLang(lang){
+  document.querySelectorAll('[data-lang]').forEach(el=>{el.classList.toggle('show',el.dataset.lang===lang)});
+  document.querySelectorAll('.lang-toggle button').forEach(b=>{b.classList.toggle('active',b.id==='btn-'+lang)});
+  document.documentElement.lang=lang;
+}
+setLang('en');
+
+const track=document.getElementById('scrollTrack');
+const cards=track.querySelectorAll('.scroll-card');
+const dotsC=document.getElementById('dotIndicators');
+cards.forEach((_,i)=>{const d=document.createElement('span');if(i===0)d.classList.add('active');dotsC.appendChild(d)});
+const dots=dotsC.querySelectorAll('span');
+track.addEventListener('scroll',()=>{const cw=cards[0].offsetWidth+20;const idx=Math.round(track.scrollLeft/cw);dots.forEach((d,i)=>d.classList.toggle('active',i===idx))});
+
+function scrollCarousel(dir){
+  const cw=cards[0].offsetWidth+20;
+  track.scrollBy({left:dir*cw,behavior:'smooth'});
+}
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.15});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
