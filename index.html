@@ -8,8 +8,8 @@
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --bg: #FFFCF8; --bg-alt: #FFF5EE; --accent: #D4956B;
-  --sage: #8FA88A; --text: #33302C; --muted: #8A857E;
+  --bg: #FDF0E9; --bg-alt: #F5D5C6; --accent: #C97B5A;
+  --brown: #4A2515; --text: #3D2218; --muted: #7A5C50;
 }
 body { background: var(--bg); color: var(--text); font-family: Georgia,'Times New Roman',serif; font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
 
@@ -31,44 +31,46 @@ section { padding: 72px 24px }
 /* Hero — side by side */
 .hero { padding-top:110px;padding-bottom:56px }
 .hero-inner { display:flex;align-items:center;gap:40px;max-width:680px;margin:0 auto }
-.hero .headshot { width:160px;height:160px;border-radius:50%;object-fit:cover;border:2.5px solid var(--sage);flex-shrink:0 }
-.hero-text h1 { font-size:2.5rem;font-weight:400;letter-spacing:.02em;margin-bottom:6px }
+.hero .headshot { width:190px;height:190px;border-radius:50%;object-fit:cover;border:3px solid var(--accent);flex-shrink:0 }
+.hero-text h1 { font-size:2.5rem;font-weight:400;letter-spacing:.02em;margin-bottom:6px;color:var(--brown) }
 .hero-text .subtitle { font-size:1.05rem;color:var(--muted);margin-bottom:16px;font-style:italic }
-.hero-text .intro { font-size:1rem;color:var(--text);line-height:1.75 }
+.hero-text .intro { font-size:1rem;color:var(--text);line-height:1.75;text-align:justify;-webkit-hyphens:auto;hyphens:auto }
 @media(max-width:600px){
   .hero-inner{flex-direction:column;text-align:center}
-  .hero .headshot{width:130px;height:130px}
+  .hero .headshot{width:150px;height:150px}
 }
 
-/* Floral divider */
-.floral-divider { display:flex;justify-content:center;align-items:center;gap:12px;padding:8px 0 }
-.floral-divider svg { opacity:.4 }
+/* Divider */
+.divider { display:flex;justify-content:center;align-items:center;gap:10px;padding:6px 0 }
+.divider span { display:block;width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.35 }
+.divider span:nth-child(2) { width:7px;height:7px;opacity:.55 }
 
 /* About */
-.about p { font-size:1.02rem;line-height:1.8;color:var(--text) }
+.about p { font-size:1.02rem;line-height:1.8;color:var(--text);text-align:justify;-webkit-hyphens:auto;hyphens:auto }
 
 /* Section title */
-.section-title { font-size:1.5rem;font-weight:400;text-align:center;margin-bottom:36px;letter-spacing:.01em }
+.section-title { font-size:1.5rem;font-weight:400;text-align:center;margin-bottom:36px;letter-spacing:.01em;color:var(--brown) }
 
 /* Portfolio — 2-column grid */
 .portfolio-section { padding-bottom:48px }
 .portfolio-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:880px;margin:0 auto;padding:0 24px }
-.grid-card { border-radius:12px;overflow:hidden;position:relative;aspect-ratio:3/4;background:#eee }
+.grid-card { border-radius:12px;overflow:hidden;position:relative;aspect-ratio:3/4;background:#e8cfc2 }
 .grid-card img { width:100%;height:100%;object-fit:cover;display:block }
-.grid-card .caption { position:absolute;bottom:0;left:0;right:0;padding:48px 16px 16px;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff;font-size:.9rem;font-style:italic }
+.grid-card .caption { position:absolute;bottom:0;left:0;right:0;padding:48px 16px 16px;background:linear-gradient(transparent,rgba(58,28,16,.6));color:#fff;font-size:.9rem;font-style:italic }
 @media(max-width:540px){
   .portfolio-grid{grid-template-columns:1fr;max-width:440px}
 }
 
 /* Experience — card style */
 .experience-cards { max-width:640px;margin:0 auto }
-.exp-card { background:var(--bg);border:1px solid rgba(212,149,107,.2);border-radius:12px;padding:24px 28px;margin-bottom:16px }
+.exp-card { background:rgba(253,240,233,.6);border:1px solid rgba(201,123,90,.2);border-radius:12px;padding:24px 28px;margin-bottom:16px }
 .exp-card .year { font-family:system-ui,sans-serif;font-size:.82rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px }
-.exp-card h3 { font-size:1.05rem;font-weight:600;margin-bottom:4px }
+.exp-card h3 { font-size:1.05rem;font-weight:600;margin-bottom:4px;color:var(--brown) }
 .exp-card p { font-size:.92rem;color:var(--muted);margin-bottom:3px }
 .exp-card ul { margin:8px 0 0 18px;font-size:.88rem;color:var(--muted);line-height:1.6 }
 .exp-card ul li { margin-bottom:2px }
-.badge { display:inline-block;font-family:system-ui,sans-serif;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;background:var(--bg-alt);color:var(--accent);border:1px solid var(--accent);border-radius:20px;padding:2px 10px;margin-top:4px }
+.badge { display:inline-block;font-family:system-ui,sans-serif;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;background:var(--bg);color:var(--accent);border:1px solid var(--accent);border-radius:20px;padding:2px 10px;margin-top:4px }
+.exp-note { max-width:640px;margin:20px auto 0;text-align:center;font-style:italic;color:var(--muted);font-size:.95rem }
 
 /* Languages */
 .languages { max-width:580px;margin:32px auto 0;display:flex;gap:24px;justify-content:center;flex-wrap:wrap }
@@ -102,38 +104,30 @@ footer { font-family:system-ui,sans-serif;text-align:center;padding:32px 24px;fo
     <img class="headshot" src="img/headshot.jpg" alt="Laura Benatti">
     <div class="hero-text">
       <h1>Laura Benatti</h1>
-      <div class="subtitle" data-lang="en">Pastry · Budapest</div>
-      <div class="subtitle" data-lang="hu">Cukrászat · Budapest</div>
-      <div class="subtitle" data-lang="it">Pasticceria · Budapest</div>
-      <p class="intro" data-lang="en">From Cento, Italy. Grew up in Hungary, spent a year in Denmark. Trained at CIE, interned at Chez Dodo. Looking for a pastry kitchen in Budapest.</p>
-      <p class="intro" data-lang="hu">Centóból, Olaszország. Magyarországon nőttem fel, egy évet Dániában töltöttem. A CIE-nél tanultam, a Chez Dodo-ban gyakornokoskodtam. Cukrászkonyhát keresek Budapesten.</p>
-      <p class="intro" data-lang="it">Da Cento, Italia. Cresciuta in Ungheria, un anno in Danimarca. Formata al CIE, stage al Chez Dodo. Cerco una cucina a Budapest.</p>
+      <div class="subtitle" data-lang="en">Pastry Assistant · Székesfehérvár / Budapest</div>
+      <div class="subtitle" data-lang="hu">Cukrászsegéd · Székesfehérvár / Budapest</div>
+      <div class="subtitle" data-lang="it">Assistente Pasticcera · Székesfehérvár / Budapest</div>
+      <p class="intro" data-lang="en">Pastry assistant with a one-year diploma from the Culinary Institute of Europe and a four-month internship at Chez Dodo. I focus on tarts, choux, macarons, and bonbons. I also have a decade of hands-on hobby experience. Looking for a kitchen or workshop where I can keep learning as part of a team.</p>
+      <p class="intro" data-lang="hu">Cukrászsegéd vagyok egyéves szakmai képzéssel a Culinary Institute of Europe-nél és négyhónapos gyakorlattal a Chez Dodo-ban. Főként tarte-okat, choux-t, macaronokat és bonbonokat készítek. Emellett évtizedes hobbiként szerzett gyakorlati tapasztalattal rendelkezem. Olyan konyhát vagy műhelyt keresek, ahol csapatban tovább tanulhatok.</p>
+      <p class="intro" data-lang="it">Assistente pasticcera con diploma annuale al Culinary Institute of Europe e quattro mesi di stage al Chez Dodo. Mi dedico a crostate, choux, macaron e bonbon. Ho anche un decennio di esperienza pratica come hobby. Cerco una cucina o un laboratorio dove continuare a imparare in squadra.</p>
     </div>
   </div>
 </section>
 
-<div class="floral-divider">
-  <svg width="16" height="22" viewBox="0 0 16 22" fill="none"><ellipse cx="8" cy="6" rx="5" ry="6" fill="#D4956B"/><ellipse cx="5" cy="9" rx="4" ry="5" fill="#8FA88A" opacity=".5"/><line x1="8" y1="12" x2="8" y2="22" stroke="#8FA88A" stroke-width="1.2"/></svg>
-  <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><ellipse cx="5" cy="4" rx="3.5" ry="4.5" fill="#D4956B" opacity=".7"/><line x1="5" y1="9" x2="5" y2="18" stroke="#8FA88A" stroke-width="1"/></svg>
-  <svg width="16" height="22" viewBox="0 0 16 22" fill="none"><ellipse cx="8" cy="6" rx="5" ry="6" fill="#D4956B"/><ellipse cx="11" cy="9" rx="4" ry="5" fill="#8FA88A" opacity=".5"/><line x1="8" y1="12" x2="8" y2="22" stroke="#8FA88A" stroke-width="1.2"/></svg>
-</div>
+<div class="divider"><span></span><span></span><span></span></div>
 
 <section class="alt-bg">
   <div class="container about fade-in">
     <h2 class="section-title" data-lang="en">About</h2>
     <h2 class="section-title" data-lang="hu">Rólam</h2>
     <h2 class="section-title" data-lang="it">Chi sono</h2>
-    <p data-lang="en">I grew up in Cento, a small town in Emilia-Romagna, and moved to Hungary as a kid. I studied marketing and international relations, then spent about five years in corporate — Grundfos, Hydro, Videoton, and currently Emerson. It was a good career but not what I wanted to keep doing. In 2024 I started a one-year pastry diploma at the Culinary Institute of Europe. This past summer I did my internship at Chez Dodo in Budapest — they hold a La Liste Pastry Discovery Gem distinction, one of about five worldwide. I make tarts, choux, macarons, bonbons, and ice cream. I'm looking for a small team where I can keep learning.</p>
-    <p data-lang="hu">Centóban nőttem fel, egy kis városban Emilia-Romagna tartományban, aztán gyerekként Magyarországra költöztünk. Marketinget és nemzetközi kapcsolatokat tanultam, utána körülbelül öt évig multinacionális cégeknél dolgoztam — Grundfos, Hydro, Videoton, jelenleg Emerson. Jó karrier volt, de nem azt akartam csinálni egész életemben. 2024-ben elkezdtem egy egyéves cukrász képzést a Culinary Institute of Europe-nál. Idén nyáron a Chez Dodo-ban gyakornokoskodtam Budapesten — La Liste Pastry Discovery Gem díjasok, a világ körülbelül öt ilyen helyének egyike. Tartákat, choux-t, macaronokat, bonbonokat és fagylaltot készítek. Kis csapatot keresek, ahol tovább tanulhatok.</p>
-    <p data-lang="it">Sono cresciuta a Cento, un paesino in Emilia-Romagna, poi da bambina ci siamo trasferiti in Ungheria. Ho studiato marketing e relazioni internazionali, poi ho lavorato circa cinque anni in aziende multinazionali — Grundfos, Hydro, Videoton, e attualmente Emerson. Una buona carriera, ma non quello che volevo continuare a fare. Nel 2024 ho iniziato un diploma annuale di pasticceria al Culinary Institute of Europe. Quest'estate ho fatto lo stage al Chez Dodo a Budapest — hanno il riconoscimento La Liste Pastry Discovery Gem, uno di circa cinque al mondo. Faccio crostate, choux, macaron, bonbon e gelato. Cerco un piccolo team dove continuare a imparare.</p>
+    <p data-lang="en">I grew up in Cento, a small town in Emilia-Romagna, and moved to Hungary as a kid. I spent a year in Denmark as an exchange student. After university I worked for several years in multinational companies, which gave me a structured way of thinking — but it wasn't what I wanted to do long-term. In 2024 I started a one-year pastry diploma at the Culinary Institute of Europe, and in the summer of 2025 I did my internship at Chez Dodo in Budapest. I aim for precise, thorough, and consistent work. My goal is to develop my pastry skills further and find a place where I can grow as part of a team.</p>
+    <p data-lang="hu">Centóban nőttem fel, egy kis városban Emilia-Romagna tartományban, aztán gyerekként Magyarországra költöztünk. Egy évet Dániában töltöttem cserediákként. Az egyetem után több évig multinacionális környezetben dolgoztam, ami hozzásegített egy strukturáltabb szemléletmódhoz — de nem azt akartam csinálni egész életemben. 2024-ben elkezdtem egy egyéves cukrász képzést a Culinary Institute of Europe-nál, 2025 nyarán pedig a Chez Dodo-ban gyakornokoskodtam Budapesten. Törekszem a precíz, alapos és következetes munkavégzésre. Célom a cukrászati-szakmai tudásom fejlesztése, és egy olyan helyen való elhelyezkedés, ahol csapatban tovább tanulhatok.</p>
+    <p data-lang="it">Sono cresciuta a Cento, un paesino in Emilia-Romagna, poi da bambina ci siamo trasferiti in Ungheria. Ho trascorso un anno in Danimarca come studentessa di scambio. Dopo l'università ho lavorato diversi anni in aziende multinazionali, il che mi ha dato un approccio strutturato — ma non era quello che volevo fare a lungo termine. Nel 2024 ho iniziato un diploma annuale di pasticceria al Culinary Institute of Europe, e nell'estate 2025 ho fatto lo stage al Chez Dodo a Budapest. Punto a un lavoro preciso, accurato e costante. Il mio obiettivo è sviluppare ulteriormente le mie competenze e trovare un posto dove crescere in squadra.</p>
   </div>
 </section>
 
-<div class="floral-divider">
-  <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><ellipse cx="5" cy="4" rx="3.5" ry="4.5" fill="#D4956B" opacity=".6"/><line x1="5" y1="9" x2="5" y2="18" stroke="#8FA88A" stroke-width="1"/></svg>
-  <svg width="16" height="22" viewBox="0 0 16 22" fill="none"><ellipse cx="8" cy="6" rx="5" ry="6" fill="#D4956B" opacity=".8"/><ellipse cx="10" cy="8" rx="3" ry="4" fill="#8FA88A" opacity=".4"/><line x1="8" y1="12" x2="8" y2="22" stroke="#8FA88A" stroke-width="1.2"/></svg>
-  <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><ellipse cx="5" cy="4" rx="3.5" ry="4.5" fill="#D4956B" opacity=".6"/><line x1="5" y1="9" x2="5" y2="18" stroke="#8FA88A" stroke-width="1"/></svg>
-</div>
+<div class="divider"><span></span><span></span><span></span></div>
 
 <section class="portfolio-section">
   <h2 class="section-title fade-in" data-lang="en">Portfolio</h2>
@@ -147,7 +141,7 @@ footer { font-family:system-ui,sans-serif;text-align:center;padding:32px 24px;fo
     <div class="grid-card fade-in"><img src="img/web_caramel_bonbons.jpg" alt="Caramel bonbons"><div class="caption"><span data-lang="en">Caramel bonbons — hand-dipped, salted</span><span data-lang="hu">Karamell bonbonok — kézzel mártott, sós</span><span data-lang="it">Bonbon al caramello — tuffati a mano, salati</span></div></div>
     <div class="grid-card fade-in"><img src="img/web_plum_galette.jpg" alt="Plum galette"><div class="caption"><span data-lang="en">Plum galette — freeform, buttery crust</span><span data-lang="hu">Szilvás galette — vajas, rusztikus tészta</span><span data-lang="it">Galette alle prugne — pasta burrosa, rustica</span></div></div>
     <div class="grid-card fade-in"><img src="img/web_raspberry_madeleines.jpg" alt="Raspberry madeleines"><div class="caption"><span data-lang="en">Raspberry madeleines — freeze-dried raspberry</span><span data-lang="hu">Málnás madeleine — liofilizált málna</span><span data-lang="it">Madeleines al lampone — lamponi liofilizzati</span></div></div>
-    <div class="grid-card fade-in"><img src="img/web_sugar_flowers.jpg" alt="Sugar flowers"><div class="caption"><span data-lang="en">Sugar flowers — hand-shaped petals</span><span data-lang="hu">Cukorvirágok — kézzel formázott szirmok</span><span data-lang="it">Fiori di zucchero — petali modellati a mano</span></div></div>
+    <div class="grid-card fade-in"><img src="img/web_sugar_flowers.jpg" alt="Sugar flowers"><div class="caption"><span data-lang="en">Sugar flowers — orchids, roses, lilies</span><span data-lang="hu">Cukorvirágok — orchideák, rózsák, liliomok</span><span data-lang="it">Fiori di zucchero — orchidee, rose, gigli</span></div></div>
     <div class="grid-card fade-in"><img src="img/web_linzer.jpg" alt="Linzer"><div class="caption"><span data-lang="en">Linzer cookies — classic lattice, redcurrant jam</span><span data-lang="hu">Linzer — klasszikus rácsos, ribizlidzsem</span><span data-lang="it">Biscotti Linzer — marmellata di ribes</span></div></div>
     <div class="grid-card fade-in"><img src="img/web_caneles.jpg" alt="Canelés"><div class="caption"><span data-lang="en">Canelés — copper-mould, rum-vanilla custard</span><span data-lang="hu">Canelék — réz formában sütve, rum-vanília</span><span data-lang="it">Canelé — stampo in rame, crema rum-vaniglia</span></div></div>
     <div class="grid-card fade-in"><img src="img/web_banana_bread.jpg" alt="Banana bread"><div class="caption"><span data-lang="en">Banana bread — ripe banana, walnuts</span><span data-lang="hu">Banánkenyér — érett banán, dió</span><span data-lang="it">Banana bread — banana matura, noci</span></div></div>
@@ -156,17 +150,13 @@ footer { font-family:system-ui,sans-serif;text-align:center;padding:32px 24px;fo
   </div>
 </section>
 
-<div class="floral-divider">
-  <svg width="16" height="22" viewBox="0 0 16 22" fill="none"><ellipse cx="8" cy="6" rx="5" ry="6" fill="#D4956B"/><ellipse cx="5" cy="9" rx="4" ry="5" fill="#8FA88A" opacity=".5"/><line x1="8" y1="12" x2="8" y2="22" stroke="#8FA88A" stroke-width="1.2"/></svg>
-  <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><ellipse cx="5" cy="4" rx="3.5" ry="4.5" fill="#D4956B" opacity=".7"/><line x1="5" y1="9" x2="5" y2="18" stroke="#8FA88A" stroke-width="1"/></svg>
-  <svg width="16" height="22" viewBox="0 0 16 22" fill="none"><ellipse cx="8" cy="6" rx="5" ry="6" fill="#D4956B"/><ellipse cx="11" cy="9" rx="4" ry="5" fill="#8FA88A" opacity=".5"/><line x1="8" y1="12" x2="8" y2="22" stroke="#8FA88A" stroke-width="1.2"/></svg>
-</div>
+<div class="divider"><span></span><span></span><span></span></div>
 
 <section class="alt-bg">
   <div class="container fade-in">
-    <h2 class="section-title" data-lang="en">Experience</h2>
-    <h2 class="section-title" data-lang="hu">Tapasztalat</h2>
-    <h2 class="section-title" data-lang="it">Esperienza</h2>
+    <h2 class="section-title" data-lang="en">Experience &amp; Training</h2>
+    <h2 class="section-title" data-lang="hu">Tapasztalat és tanulmányok</h2>
+    <h2 class="section-title" data-lang="it">Esperienza e formazione</h2>
 
     <div class="experience-cards">
       <div class="exp-card">
@@ -174,25 +164,48 @@ footer { font-family:system-ui,sans-serif;text-align:center;padding:32px 24px;fo
         <h3>Chez Dodo — <span data-lang="en">Pastry Intern</span><span data-lang="hu">Cukrász gyakornok</span><span data-lang="it">Stagista pasticcera</span></h3>
         <span class="badge">La Liste Pastry Discovery Gem</span>
         <ul>
-          <li data-lang="en">Daily production: choux, tarts, macarons, artisan ice cream</li>
+          <li data-lang="en">Four-month intensive summer internship</li>
+          <li data-lang="en">Daily pastry prep workflows, including opening and closing</li>
+          <li data-lang="en">Doughs, creams, and fillings prepared from recipes</li>
+          <li data-lang="en">Assisted in ice cream production</li>
+          <li data-lang="en">Filling, assembling, packaging, and labelling macarons</li>
           <li data-lang="en">Workshop kitchen and front-of-house show kitchen</li>
-          <li data-lang="en">Opening/closing procedures, full prep line</li>
-          <li data-lang="hu">Napi termelés: choux, tarták, macaronok, fagylalt</li>
-          <li data-lang="hu">Üzemi és látványkonyhás munkavégzés</li>
-          <li data-lang="hu">Nyitás/zárás, teljes előkészítő sor</li>
-          <li data-lang="it">Produzione quotidiana: choux, crostate, macaron, gelato artigianale</li>
+          <li data-lang="hu">4 hónapos intenzív nyári gyakorlat</li>
+          <li data-lang="hu">Részvétel a napi cukrászati előkészítő munkafolyamatokban, beleértve a nyitási és zárási feladatokat</li>
+          <li data-lang="hu">Tészták, krémek, töltelékek előkészítése receptek alapján</li>
+          <li data-lang="hu">Fagylaltok készítésében való részvétel</li>
+          <li data-lang="hu">Macaronok töltése, összeállítása, csomagolása és címkézése</li>
+          <li data-lang="hu">Munkavégzés üzemi és látványkonyhás környezetben</li>
+          <li data-lang="it">Stage estivo intensivo di quattro mesi</li>
+          <li data-lang="it">Flussi di preparazione giornalieri, apertura e chiusura incluse</li>
+          <li data-lang="it">Preparazione di impasti, creme e ripieni da ricetta</li>
+          <li data-lang="it">Produzione di gelato</li>
+          <li data-lang="it">Farcitura, assemblaggio, confezionamento ed etichettatura macaron</li>
           <li data-lang="it">Laboratorio e cucina a vista</li>
-          <li data-lang="it">Apertura/chiusura, linea di preparazione completa</li>
         </ul>
+      </div>
+      <div class="exp-card">
+        <div class="year">2024–26</div>
+        <h3>Violet and the Botanist — <span data-lang="en">Sugar Flower Courses</span><span data-lang="hu">Cukorvirág tanfolyamok</span><span data-lang="it">Corsi di fiori di zucchero</span></h3>
+        <p data-lang="en">Recurring courses several times a year. Orchids, roses, lilies.</p>
+        <p data-lang="hu">Évente többszöri tanfolyamok. Orchideák, rózsák, liliomok.</p>
+        <p data-lang="it">Corsi ricorrenti più volte l'anno. Orchidee, rose, gigli.</p>
       </div>
       <div class="exp-card">
         <div class="year">2024–25</div>
         <h3 data-lang="en">CIE — Pastry Arts Diploma</h3>
         <h3 data-lang="hu">CIE — Cukrász Művészetek</h3>
         <h3 data-lang="it">CIE — Diploma Arti Pasticcere</h3>
-        <p data-lang="en">Culinary Institute of Europe — one-year professional pastry training. French technique foundations, sugar work, chocolate, bread, ice cream.</p>
-        <p data-lang="hu">Culinary Institute of Europe — egyéves szakmai cukrász képzés. Francia technika alapok, cukormunka, csokoládé, kenyér, fagylalt.</p>
-        <p data-lang="it">Culinary Institute of Europe — formazione professionale annuale. Tecniche francesi, lavoro dello zucchero, cioccolato, pane, gelato.</p>
+        <p data-lang="en">Culinary Institute of Europe — one-year professional pastry training. Pastry assistant qualification. French technique foundations, sugar work, chocolate, bread, ice cream.</p>
+        <p data-lang="hu">Culinary Institute of Europe — Cukrász Művészetek egyéves képzés. Cukrászsegéd végzettség. Francia technika alapok, cukormunka, csokoládé, kenyér, fagylalt.</p>
+        <p data-lang="it">Culinary Institute of Europe — formazione professionale annuale. Qualifica di assistente pasticcera. Tecniche francesi, lavoro dello zucchero, cioccolato, pane, gelato.</p>
+      </div>
+      <div class="exp-card">
+        <div class="year">2022</div>
+        <h3>Bestmixer — <span data-lang="en">Barista Course</span><span data-lang="hu">Baristaképző tanfolyam</span><span data-lang="it">Corso Barista</span></h3>
+        <p data-lang="en">Barista qualification.</p>
+        <p data-lang="hu">Barista végzettség.</p>
+        <p data-lang="it">Qualifica barista.</p>
       </div>
       <div class="exp-card">
         <div class="year">2024–</div>
@@ -209,7 +222,7 @@ footer { font-family:system-ui,sans-serif;text-align:center;padding:32px 24px;fo
         <p data-lang="it">Marketing e BD (Videoton, 2024), stage supply chain (Hydro, 2023), comunicazioni HR e qualità (Grundfos, 2020–22), reception hotel (Szárcsa, 2019–20). Quattro multinazionali, tre lingue, cinque anni di lavoro internazionale.</p>
       </div>
       <div class="exp-card">
-        <div class="year">2016–24</div>
+        <div class="year">2019–24</div>
         <h3 data-lang="en">Education</h3>
         <h3 data-lang="hu">Tanulmányok</h3>
         <h3 data-lang="it">Formazione</h3>
@@ -218,6 +231,10 @@ footer { font-family:system-ui,sans-serif;text-align:center;padding:32px 24px;fo
         <p data-lang="it">MSc Marketing, BSc Relazioni Internazionali (Metropolitan University, Budapest). Anno di scambio AFS in Danimarca (Herning Gymnasium, 2016–17).</p>
       </div>
     </div>
+
+    <p class="exp-note" data-lang="en">A decade of hands-on pastry experience as a hobby.</p>
+    <p class="exp-note" data-lang="hu">Hobbi szinten évtizedes cukrász tapasztalat.</p>
+    <p class="exp-note" data-lang="it">Un decennio di esperienza pratica in pasticceria come hobby.</p>
 
     <div class="languages">
       <div class="lang-item"><div class="name" data-lang="en">Italian</div><div class="name" data-lang="hu">Olasz</div><div class="name" data-lang="it">Italiano</div><div class="level" data-lang="en">Native</div><div class="level" data-lang="hu">anyanyelvi</div><div class="level" data-lang="it">Madrelingua</div></div>
@@ -228,11 +245,7 @@ footer { font-family:system-ui,sans-serif;text-align:center;padding:32px 24px;fo
   </div>
 </section>
 
-<div class="floral-divider">
-  <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><ellipse cx="5" cy="4" rx="3.5" ry="4.5" fill="#D4956B" opacity=".6"/><line x1="5" y1="9" x2="5" y2="18" stroke="#8FA88A" stroke-width="1"/></svg>
-  <svg width="16" height="22" viewBox="0 0 16 22" fill="none"><ellipse cx="8" cy="6" rx="5" ry="6" fill="#D4956B" opacity=".8"/><ellipse cx="10" cy="8" rx="3" ry="4" fill="#8FA88A" opacity=".4"/><line x1="8" y1="12" x2="8" y2="22" stroke="#8FA88A" stroke-width="1.2"/></svg>
-  <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><ellipse cx="5" cy="4" rx="3.5" ry="4.5" fill="#D4956B" opacity=".6"/><line x1="5" y1="9" x2="5" y2="18" stroke="#8FA88A" stroke-width="1"/></svg>
-</div>
+<div class="divider"><span></span><span></span><span></span></div>
 
 <section>
   <div class="container contact fade-in">
@@ -242,15 +255,15 @@ footer { font-family:system-ui,sans-serif;text-align:center;padding:32px 24px;fo
     <div class="contact-details">
       <a href="mailto:laura.benatti.ip@gmail.com">laura.benatti.ip@gmail.com</a><br>
       +36 20 559 4753<br>
-      Budapest
+      Székesfehérvár / Budapest
     </div>
-    <p class="contact-note" data-lang="en">Available for pastry positions, stages, and collaborations.</p>
-    <p class="contact-note" data-lang="hu">Cukrász pozíciókra, gyakorlatokra és együttműködésekre nyitott.</p>
-    <p class="contact-note" data-lang="it">Disponibile per posizioni in pasticceria, stage e collaborazioni.</p>
+    <p class="contact-note" data-lang="en">Available in Székesfehérvár and Budapest. Open to pastry positions, stages, and collaborations.</p>
+    <p class="contact-note" data-lang="hu">Székesfehérváron és Budapesten is elérhető. Cukrász pozíciókra, gyakorlatokra és együttműködésekre nyitott.</p>
+    <p class="contact-note" data-lang="it">Disponibile a Székesfehérvár e Budapest. Aperta a posizioni in pasticceria, stage e collaborazioni.</p>
   </div>
 </section>
 
-<footer>&copy; 2025 Laura Benatti</footer>
+<footer>&copy; 2026 Laura Benatti</footer>
 
 <script>
 function setLang(lang){
@@ -258,7 +271,8 @@ function setLang(lang){
   document.querySelectorAll('.lang-toggle button').forEach(b=>{b.classList.toggle('active',b.id==='btn-'+lang)});
   document.documentElement.lang=lang;
 }
-setLang('en');
+var browserLang = (navigator.language || '').slice(0,2);
+setLang(['hu','it'].includes(browserLang) ? browserLang : 'en');
 
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.15});
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));

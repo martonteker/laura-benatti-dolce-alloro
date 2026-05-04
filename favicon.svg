@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <circle cx="16" cy="18" r="11" fill="#D4956B"/>
-  <ellipse cx="11" cy="12" rx="5" ry="4.5" fill="#E8B898" transform="rotate(-15 11 12)"/>
-  <ellipse cx="21" cy="12" rx="5" ry="4.5" fill="#E8B898" transform="rotate(15 21 12)"/>
-  <ellipse cx="16" cy="10" rx="5.5" ry="5" fill="#EDCDB5"/>
-  <circle cx="16" cy="18" r="7" fill="#FFFCF8" opacity=".15"/>
+  <circle cx="16" cy="18" r="11" fill="#C97B5A"/>
+  <ellipse cx="11" cy="12" rx="5" ry="4.5" fill="#E0A68A" transform="rotate(-15 11 12)"/>
+  <ellipse cx="21" cy="12" rx="5" ry="4.5" fill="#E0A68A" transform="rotate(15 21 12)"/>
+  <ellipse cx="16" cy="10" rx="5.5" ry="5" fill="#F5D5C6"/>
+  <circle cx="16" cy="18" r="7" fill="#FDF0E9" opacity=".15"/>
 </svg>
